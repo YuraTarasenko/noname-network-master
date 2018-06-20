@@ -1,0 +1,6 @@
+<h1><%= @wall_post.body %></h1>
+
+
+<%= link_to 'изменить', edit_wall_post_path(@wall_post) %>
+|
+<%= link_to 'удалить', wall_post_path(@wall_post), method: :delete, data: { confirm: 'Вы уверены?'} %>

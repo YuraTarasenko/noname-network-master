@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NonameNetwork</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+ <body>
+
+   <div id="user_header">
+     <% if current_user %>
+       Logged in as <%= current_user.email %>.
+       <%= link_to "Log Out", logout_path %>
+     <% else %>
+        <%= link_to "Sign Up", signup_path %> or
+        <%= link_to "Log In", login_path %>
+     <% end %>
+   </div>
+
+   <% flash.each do |key, value| %>
+     <%= content_tag(:div, class: "alert alert-#{key}") do %>
+       <p><%= value %></p>
+     <% end %>
+   <% end %>
+
+
+    <div class="navbar-left">
+      <%= link_to 'Все пользователи', users_path %>
+      |
+      <%= link_to 'Продукты', products_path %>
+
+
+    </div>
+    <!-- placeholder-->
+    <div class="navbar-right">
+      <%= form_tag search_users_path do %>
+        <input class="search full-width" id="searchbar" name="query" placeholder="Search users" type="text"
+        avtocomplete="off">
+        <!--<%= text_field_tag :search, params[:search] %>-->
+        <%= submit_tag "Search name", :name => nil %>
+      <% end %>
+
+      <%= form_tag search_wall_posts_path do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag 'Search wall posts' %>
+      <% end %>
+    </div>
+
+    <div class="clearfix">
+
+    <%= yield %>
+  </body>
+</html>

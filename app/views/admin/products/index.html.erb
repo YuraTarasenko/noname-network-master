@@ -1,0 +1,6 @@
+<% @products.each do |product| %>
+
+<h2><%=  link_to product.name, product_path(product)  %></h2>
+    <%= link_to 'Изменить', edit_admin_product_path(product)  %>|<%= link_to 'удалить',product, method: :delete, data: { confirm: 'Вы уверены?' } %>
+
+<% end %>

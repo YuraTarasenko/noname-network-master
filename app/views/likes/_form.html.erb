@@ -1,0 +1,17 @@
+<%= form_for wall_post.likes.new do |form| %>
+    <%= form.hidden_field :wall_post_id, value: wall_post.id %>
+
+    <table>
+        <tr>
+            <td><%= form.label 'liked_true', '+1' %></td>
+            <td><%= form.radio_button :liked, true %></td>
+        </tr>
+
+        <tr>
+            <td><%= form.label 'liked_false', '-1' %></td>
+            <td><%= form.radio_button :liked, false %></td>
+        </tr>
+    </table>
+
+    <%= form.submit 'Answer' %>
+<% end %>

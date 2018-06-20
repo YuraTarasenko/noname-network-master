@@ -1,0 +1,7 @@
+<% @users.each do |user|%>
+
+<h2><%= link_to user.first_name, user_path(user) %></h2>
+
+<%= link_to 'удалить', user, method: :delete, data: { confirm: 'Вы уверены?'} %>
+
+<% end %>

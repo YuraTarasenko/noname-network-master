@@ -1,0 +1,36 @@
+<h1><%= @user.first_name %>     <%= @user.last_name %></h1>
+
+<%= image_tag @user.image.url(:large), class: 'img-show' if @user.image? %>
+
+<h3>Посты пользователя <%= @user.first_name %><h3>
+
+<% @user.wall_posts.each do |wall_post| %>
+
+  <p>
+    <%= wall_post.id %>: <%= wall_post.body %>
+    <%= link_to 'удалить',  wall_post_path(wall_post), method: :delete, data: { confirm: 'Вы уверены?'} %>
+
+    <%= render 'likes/form', wall_post: wall_post %>
+
+
+    <%= link_to 'with action param +1', wall_post_modify_path(wall_post, 'like') %>
+    <%= link_to 'with action param -1', wall_post_modify_path(wall_post, 'dislike') %>
+
+    <p>
+      <span><%= link_to 'link +1', wall_post_like_path(wall_post) %>
+        <b><%= wall_post.total_positive_likes %></b>
+      </span>
+    </p>
+
+    <p>
+      <span><%= link_to 'link -1', wall_post_dislike_path(wall_post) %>
+        <b><%= wall_post.total_negative_likes %></b>
+      </span>
+    </p>
+
+  </p>
+<% end %>
+
+<%= render 'wall_posts/form' %>
+
+<%= link_to 'Изменить', edit_user_path(@user)  %>

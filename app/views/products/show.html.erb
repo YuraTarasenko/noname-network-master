@@ -1,0 +1,14 @@
+<h1><%= @product.name %></h1>
+
+<h2><%= @product.description %></h2>
+
+<% @product.reviews.each do |review|%>
+
+  <p>
+    <%= review.id %>: <%= review.body %>
+    <%= link_to 'удалить',  review_path(review), method: :delete, data: { confirm: 'Вы уверены?'} %>
+  </p>
+
+<% end %>
+
+<%= render 'reviews/form' %>

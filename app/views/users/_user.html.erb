@@ -1,0 +1,2 @@
+  <h2><%= link_to user.first_name, user_path(user) %></h2>
+<%= image_tag user.image.url(:thumb), class: 'thumb' if user.image? %>
